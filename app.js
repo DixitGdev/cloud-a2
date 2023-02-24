@@ -54,6 +54,7 @@ app.post('/storedata', (req, res) => {
     let data = req.body.data;
     if (data){
         try {
+            console.log(data)
             s3.upload({
                 Bucket: 'a2-bucket-dixit',
                 Key: 'file.txt',
@@ -83,8 +84,6 @@ app.post('/storedata', (req, res) => {
 
 // APPEND CONTENT TO THE FILE
 app.post('/appenddata', (req, res) => {
-    const filePath = __dirname+"\file.txt";
-
     const bName = "a2-bucket-dixit";
     const keyName = "file.txt";
 

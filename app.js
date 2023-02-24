@@ -41,7 +41,7 @@ fetch('http://52.91.127.198:8080/start', {
         banner: "B00913652",
         ip: "100.25.159.24:5000"
     })
-}).then(res=> res.json()).then(data => console.log)
+}).then(res=> res.json()).then(data => console.log(data))
 
 
 // Making POST request to start endpoint

@@ -34,10 +34,12 @@ app.get('/', (req, res) => {
     
 // }
 
-axios.post('http://52.91.127.198:8080/start', {
+fetch('http://52.91.127.198:8080/start', {
+    body: JSON.stringify({
         banner: "B00913652",
         ip: "100.25.159.24:5000"
-    }).then(res=> res.json()).then(data => console.log)
+    })
+}).then(res=> res.json()).then(data => console.log)
 
 
 // Making POST request to start endpoint

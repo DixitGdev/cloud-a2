@@ -5,7 +5,7 @@ const fs = require('fs')
 const app = express()
 const AWS = require('aws-sdk')
 
-const PORT = 3000
+const PORT = 5000
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
@@ -37,7 +37,7 @@ const postStart = async () => {
     try{
         const resp = await axios.post('http://52.91.127.198:8080/start', {
             "banner": "B00913652",
-            "ip": "100.25.159.24:3000"
+            "ip": "100.25.159.24:5000"
         }).then(function(res){
             console.log(res)
         });

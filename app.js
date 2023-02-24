@@ -67,8 +67,7 @@ app.post('/storedata', (req, res) => {
                 else{
                     console.log("File uploaded Successfully", data.ETag);
                     const url = data.Location();
-                    res.json({s3uri : url});
-                    res.status(200);
+                    res.status(200).json({s3uri : url})
                 }
             })
         }

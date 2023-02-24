@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
 
 
 const postStart = async () => {
+    console.log("shjdgfjhsgbfjhgasdfjhg ");
     const resp = await axios.post('http://52.91.127.198:8080/start', {
         banner: "B00913652",
         ip: "100.25.159.24:5000"

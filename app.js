@@ -11,8 +11,8 @@ app.use(bodyParser.json())
 
 AWS.config.update({
     region: 'us-east-1',
-    accessKeyId:'ASIA3G6TBONEVPBSEGHE',
-    secretAccessKey: '6mPvmESD+IV8HGhfa2E9qn3PC9rL8TDRTmB0MzDq',
+    accessKeyId:'ASIA3G6TBONE6RDHYIHU',
+    secretAccessKey:'IV4eYVKOfSFmQZ7FE/5qwCYCR7Jwac10PFv/rnKR',
     sessionToken: 'FwoGZXIvYXdzEH8aDNRfN6Ig/4ILRsr4YyLAAc8qI5+ayI/1F3XQIZauVqqJWKktb8pTqUuXrFxM9BSzVTn7sq4+5HNt1EDaMbuhYGkShnR48lI98+Cbdggwt3l2HBawX4BSqkIA6lpI9jg22oTN1k2ZWrkGex2HEbNT1q4d6vk3GpHMpDSzRb5/as9Erc2hOuDrTynNFu/4RSUNgDhcVl1f7GYAqM/GqQXFry9QOYAmEDPniRaWkwa+Uz9ITYTfIVvD075pOa4NrGos6Sjz00JuHM/2/tbLyAe30SiahuOfBjItMyvSy2LBjqLhKH16p3or3aRuGqMe6uOmJnw7yMeTyE7c766XcBAR38WSQdRE'
 });
 
@@ -34,29 +34,28 @@ const postStart = async () => {
 }
 
 // Making POST request to start endpoint
-postStart();
+// postStart();
 
 
 app.post('/storedata', (req, res) => {
     const rData = req.body.data;
     console.log(rData);
-    
-            console.log(rData)
-            s3.upload({
-                Bucket: 'a2-bucket-dixit',
-                Key: 'file.txt',
-                Body: rData
-            }, function(err, data){
-                if (err){
-                    res.status(500);
-                    console.log("Error in uploading file: ", err);
-                }
-                else{
-                    console.log("File uploaded Successfully", data.Location());
-                    const url = data.Location();
-                    res.status(200).send({s3uri : url})
-                }
-            })
+
+    s3.upload({
+        Bucket: 'a2-bucket-dixit',
+        Key: 'file.txt',
+        Body: rData
+    }, function(err, data){
+        if (err){
+            res.status(500);
+            console.log("Error in uploading file: ", err);
+        }
+        else{
+            console.log("File uploaded Successfully", data.Location());
+            const url = data.Location();
+            res.status(200).send({s3uri : url})
+        }
+    })
 
 });
 

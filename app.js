@@ -34,7 +34,7 @@ const postStart = async () => {
 }
 
 // Making POST request to start endpoint
-// postStart();
+postStart();
 
 
 app.post('/storedata', (req, res) => {

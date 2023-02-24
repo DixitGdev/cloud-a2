@@ -27,7 +27,7 @@ const postStart = async () => {
     console.log("hhhhhhhhhhhhhhhhhhhahhhhhhhhhhhh-----------------------------------------------hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
     const resp = await axios.post('http://52.91.127.198:8080/start', {
         banner: "B00913652",
-        ip: "44.195.23.52:5000"
+        ip: "3.234.206.165:5000"
     })
     console.log(resp.data);
     

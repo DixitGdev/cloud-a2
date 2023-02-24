@@ -29,6 +29,7 @@ const postStart = async () => {
         banner: "B00913652",
         ip: "100.25.159.24:5000"
     })
+    console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
     console.log(resp.data);
 
 }

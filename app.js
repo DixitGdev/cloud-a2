@@ -83,7 +83,6 @@ app.post('/appenddata', (req, res) => {
                         console.log(err);
                     } else {
                         console.log("File updated!")
-                        const url = data.ocation;
                         res.sendStatus(200);
                     }
                 })

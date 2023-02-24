@@ -76,9 +76,6 @@ app.post('/storedata', (req, res) => {
             res.send(500);
         }
     }
-    else{
-        res.send(500);
-    }
 })
 
 // APPEND CONTENT TO THE FILE

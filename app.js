@@ -21,7 +21,6 @@ const s3 = new AWS.S3();
 const params_upload = {
     Bucket: 'a2-bucket-dixit',
     Key: 'file.txt',
-    Body: fs.createReadStream(__dirname+"/file.txt")
 };
 
 const params_URL = {
@@ -53,10 +52,13 @@ postStart();
 
 app.post('/storedata', (req, res) => {
     let data = req.body.data;
-
     if (data){
         try {
-            s3.upload(params_upload, function(err, data){
+            s3.upload({
+                Bucket: 'a2-bucket-dixit',
+                Key: 'file.txt',
+                Body: data
+            }, function(err, data){
                 if (err){
                     res.status(500);
                     console.log("Error in uploading file: ", err);

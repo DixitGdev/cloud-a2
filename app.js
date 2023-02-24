@@ -1,10 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const axios = require('axios')
-const fs = require('fs')
 const app = express()
 const AWS = require('aws-sdk')
-const fetch = require('node-fetch')
 
 const PORT = 5000
 app.use(bodyParser.urlencoded({extended: false}))
@@ -25,27 +23,19 @@ app.get('/', (req, res) => {
 })
 
 
-// const postStart = async () => {
-//     console.log("shjdgfjhsgbfjhgasdfjhg ");
-//     const resp = await axios.post('http://52.91.127.198:8080/start', {
-//         banner: "B00913652",
-//         ip: "100.25.159.24:5000"
-//     })
-//     console.log(resp.data);
+const postStart = async () => {
+    console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-----------------------------------------------hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+    const resp = await axios.post('http://52.91.127.198:8080/start', {
+        banner: "B00913652",
+        ip: "100.25.159.24:5000"
+    })
+    console.log(resp.data);
     
-// }
-
-fetch('http://52.91.127.198:8080/start', {
-    method: "POST",
-    body: {
-        banner: 'B00913652',
-        ip: '100.25.159.24:5000'
-    }
-}).then(res=> res.json()).then(data => console.log(data))
+}
 
 
 // Making POST request to start endpoint
-// postStart();
+postStart();
 
 
 app.post('/storedata', (req, res) => {

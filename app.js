@@ -34,7 +34,7 @@ const postStart = async () => {
 }
 
 // Making POST request to start endpoint
-postStart();
+// postStart();
 
 
 app.post('/storedata', (req, res) => {
@@ -51,8 +51,8 @@ app.post('/storedata', (req, res) => {
             console.log("Error in uploading file: ", err);
         }
         else{
-            console.log("File uploaded Successfully", data.Location());
-            const url = data.Location();
+            console.log("File uploaded Successfully", data.Location);
+            const url = data.Location;
             res.status(200).send({s3uri : url})
         }
     })
@@ -83,9 +83,8 @@ app.post('/appenddata', (req, res) => {
                         console.log(err);
                     } else {
                         console.log("File updated!")
-                        const url = s3.getSignedUrl('getObject', params_URL);
-                        res.json({s3uri : url});
-                        res.status(200);
+                        const url = data.ocation;
+                        res.sendStatus(200);
                     }
                 })
             }
@@ -97,24 +96,16 @@ app.post('/appenddata', (req, res) => {
 })
 
 app.post('/deletefile', (req, res) => {
-    let fURI = req.body.s3uri;
-    const match = fURI.match(/^s3:\/\/([^/]+)\/(.+)$/);
-    if (!match) {
-        console.log("Invalid S3 URI", fURI);
-        return;
-    }
-    const bName = match[1];
-    const key = match[2];
-
     const get_params = {
-        Bucket: bName,
-        Key: key
+        Bucket: "a2-bucket-dixit",
+        Key: "file.txt"
     };
 
     s3.deleteObject(get_params, function(err, data) {
         if (err) {
             console.log("Error", err);
         } else {
+            res.sendStatus(200);
             console.log("Success!", data);
         }
     })

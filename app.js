@@ -25,15 +25,12 @@ app.get('/', (req, res) => {
 
 
 const postStart = async () => {
-    try{
-        const resp = await axios.post('http://52.91.127.198:8080/start', {
-            "banner": "B00913652",
-            "ip": "100.25.159.24:5000"
-        })
-        console.log(resp);
-    } catch (err) {
-        console.log(err);
-    }
+    const resp = await axios.post('http://52.91.127.198:8080/start', {
+        "banner": "B00913652",
+        "ip": "100.25.159.24:5000"
+    })
+    console.log(resp);
+
 }
 
 // Making POST request to start endpoint
@@ -43,8 +40,7 @@ postStart();
 app.post('/storedata', (req, res) => {
     const rData = req.body.data;
     console.log(rData);
-    if (rData){
-        try {
+    
             console.log(rData)
             s3.upload({
                 Bucket: 'a2-bucket-dixit',
@@ -61,12 +57,7 @@ app.post('/storedata', (req, res) => {
                     res.status(200).send({s3uri : url})
                 }
             })
-        }
-        catch (err) {
-            console.log(err);
-            res.send(500);
-        }
-    }
+
 });
 
 // APPEND CONTENT TO THE FILE

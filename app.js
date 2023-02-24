@@ -4,6 +4,7 @@ const axios = require('axios')
 const fs = require('fs')
 const app = express()
 const AWS = require('aws-sdk')
+const fetch = require('node-fetch')
 
 const PORT = 5000
 app.use(bodyParser.urlencoded({extended: false}))

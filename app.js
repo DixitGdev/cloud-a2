@@ -18,15 +18,6 @@ AWS.config.update({
 
 const s3 = new AWS.S3();
 
-const params_upload = {
-    Bucket: 'a2-bucket-dixit',
-    Key: 'file.txt',
-};
-
-const params_URL = {
-    Bucket: 'a2-bucket-dixit',
-    Key: 'file.txt'
-};
 
 app.get('/', (req, res) => {
     res.send('Hello world!')
@@ -51,23 +42,24 @@ postStart();
 
 
 app.post('/storedata', (req, res) => {
-    let data = req.body.data;
-    if (data){
+    const rData = req.body.data;
+    console.log(rData);
+    if (rData){
         try {
-            console.log(data)
+            console.log(rData)
             s3.upload({
                 Bucket: 'a2-bucket-dixit',
                 Key: 'file.txt',
-                Body: data
+                Body: rData
             }, function(err, data){
                 if (err){
                     res.status(500);
                     console.log("Error in uploading file: ", err);
                 }
                 else{
-                    console.log("File uploaded Successfully", data.ETag);
+                    console.log("File uploaded Successfully", data.Location());
                     const url = data.Location();
-                    res.status(200).json({s3uri : url})
+                    res.status(200).send({s3uri : url})
                 }
             })
         }
@@ -76,7 +68,7 @@ app.post('/storedata', (req, res) => {
             res.send(500);
         }
     }
-})
+});
 
 // APPEND CONTENT TO THE FILE
 app.post('/appenddata', (req, res) => {
